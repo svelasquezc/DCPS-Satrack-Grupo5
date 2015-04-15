@@ -6,6 +6,8 @@
         protected $nombre;
         protected $correo;
         protected $contrasena;
+        protected $tipo1;
+        protected $tipo2;
 
 
         //components
@@ -16,7 +18,7 @@
 
         //data about the attributes
         public function metadata() {
-            return array("cedula" => array(), "nombre" => array(), "correo" => array(), "contrasena" => array());
+            return array("cedula" => array(), "nombre" => array(), "correo" => array(), "contrasena" => array(), "tipo1" => array(), "tipo2" => array());
         }
 
         public function primary_key() {

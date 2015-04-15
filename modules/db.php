@@ -231,8 +231,25 @@ class db {
                         break;
                     case "validalogin":
                         $ced = mysqli_real_escape_string($this->cn, $data['cedula']);
-                        $contra = mysqli_real_escape_string($this->cn, $data['contraseña']);
-                        $info = $this->get_data("select * from login l where cedula='$ced' and contraseña='$contra';");
+                        $contra = mysqli_real_escape_string($this->cn, $data['contrasena']);
+                        $info = $this->get_data("select * from empleado where cedula='$ced' and contrasena='$contra';");
+                        break;
+                }
+                break;
+
+            case "empleado":
+                switch ($option['lvl2']) {
+                    case "all":
+                        $info = $this->get_data("select * from login;");
+                        break;
+                    case "uno":
+                        $i = mysqli_real_escape_string($this->cn, $data['cedula']);
+                        $info = $this->get_data("select * from login where cedula='$i';");
+                        break;
+                    case "validar":
+                        $ced = mysqli_real_escape_string($this->cn, $data['cedula']);
+                        $contra = mysqli_real_escape_string($this->cn, $data['contrasena']);
+                        $info = $this->get_data("select * from empleado where cedula='$ced' and contrasena='$contra';");
                         break;
                 }
                 break;

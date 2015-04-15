@@ -17,7 +17,7 @@
                 </div>
                 
                 <div class="control">
-                    <input type="password" class="form-control" name="Contraseña" placeholder="Contraseña"/>
+                    <input type="password" class="form-control" name="Contrasena" placeholder="Contraseña"/>
                 </div>
                 <div align="center">
                     

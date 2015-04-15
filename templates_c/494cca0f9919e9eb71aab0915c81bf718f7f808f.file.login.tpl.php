@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.9, created on 2015-04-15 04:53:37
+<?php /* Smarty version Smarty-3.0.9, created on 2015-04-15 22:25:15
          compiled from "C:/wamp/www/ProyectoDCPS/templates\login.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:17799552dd2b1755e69-84868184%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:10683552ec92bef2d82-86485739%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '494cca0f9919e9eb71aab0915c81bf718f7f808f' => 
     array (
       0 => 'C:/wamp/www/ProyectoDCPS/templates\\login.tpl',
-      1 => 1429066413,
+      1 => 1429129504,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '17799552dd2b1755e69-84868184',
+  'nocache_hash' => '10683552ec92bef2d82-86485739',
   'function' => 
   array (
   ),
@@ -37,7 +37,7 @@ login.php?option=validarlogin" method="post">
                 </div>
                 
                 <div class="control">
-                    <input type="password" class="form-control" name="Contraseña" placeholder="Contraseña"/>
+                    <input type="password" class="form-control" name="Contrasena" placeholder="Contraseña"/>
                 </div>
                 <div align="center">
                     
