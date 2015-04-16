@@ -16,9 +16,16 @@ class c_login extends super_controller {
         $this->em = $this->orm->get_objects("empleado");
         $this->orm->close();
         $this->engine->assign('em', $em);
+
+        if(isset($this->em[0])){
+        $_SESSION['empleado']['cedula']=$this->em[0]->get('cedula');
+        $_SESSION['empleado']['nombre']=$this->em[0]->get('nombre');
+        $_SESSION['empleado']['contrasena']=$this->em[0]->get('contrasena');
+        $this->session=$_SESSION;
+        }
            // print_r2($this->post);
             if($this->em[0]->get('tipo1') == 'miembro'){
-                $this->temp = 'proponer_idea.tpl';
+                $this->temp = 'opciones_roles.tpl';
             }
     }
 
