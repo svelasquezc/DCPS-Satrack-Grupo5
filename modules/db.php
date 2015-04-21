@@ -92,82 +92,17 @@ class db {
                 }
                 break;
 
-            case "login":
-                switch ($options['lvl2']) {
-                    case "normal":
-                        $cedula = mysqli_real_escape_string($this->cn, $object->get('cedula'));
-                        $contraseña = mysqli_real_escape_string($this->cn, $object->get('contraseña'));
-                        $tipo = $_SESSION['Tipo'];
-                        $this->do_operation("INSERT INTO login(cedula, contraseña, tipo) VALUES ('$cedula', '$contraseña', '$tipo');");
-                        break;
-                }
-                break;
 
-            case "analista":
-                switch ($options['lvl2']) {
-                    case "normal":
-                        $cedula = mysqli_real_escape_string($this->cn, $object->get('cedula'));
-                        $nombre = mysqli_real_escape_string($this->cn, $object->get('nombre'));
-                        $correo = mysqli_real_escape_string($this->cn, $object->get('correo'));
-                        $contraseña = mysqli_real_escape_string($this->cn, $object->get('contraseña'));
-                        $tipo = $_SESSION['Tipo'];
-                        $this->do_operation("INSERT INTO `dbdcps`.`analista de negocios`(`Cedula`,`Nombre`,`Correo`,`Contraseña`,`tipo`)
-                                            VALUES('$cedula','$nombre','$correo','$contraseña','$tipo');");
-                        break;
-                }
-                break;
 
-            case "arquitecto":
+            case "idea":
                 switch ($options['lvl2']) {
-                    case "normal":
-                        $cedula = mysqli_real_escape_string($this->cn, $object->get('cedula'));
-                        $nombre = mysqli_real_escape_string($this->cn, $object->get('nombre'));
-                        $correo = mysqli_real_escape_string($this->cn, $object->get('correo'));
-                        $contraseña = mysqli_real_escape_string($this->cn, $object->get('contraseña'));
-                        $tipo = $_SESSION['Tipo'];
-                        $this->do_operation("INSERT INTO `dbdcps`.`arquitecto de software`(`Cedula`,`Nombre`,`Correo`,`Contraseña`,`tipo`)
-                                            VALUES('$cedula','$nombre','$correo','$contraseña','$tipo');");
-                        break;
-                }
-                break;
-            case "cliente":
-                switch ($options['lvl2']) {
-                    case "normal":
-                        $cedula = mysqli_real_escape_string($this->cn, $object->get('cedula'));
-                        $nombre = mysqli_real_escape_string($this->cn, $object->get('nombre'));
-                        $correo = mysqli_real_escape_string($this->cn, $object->get('correo'));
-                        $contraseña = mysqli_real_escape_string($this->cn, $object->get('contraseña'));
-                        $tipo = $_SESSION['Tipo'];
-                        $this->do_operation("INSERT INTO `dbdcps`.`cliente`(`Cedula`,`Nombre`,`Correo`,`Contraseña`,`tipo`)
-                                            VALUES('$cedula','$nombre','$correo','$contraseña','$tipo');");
-                        break;
-                }
-                break;
+                    case "insert":
+                        $nom = mysqli_real_escape_string($this->cn, $object->get('nombre'));
+                        $des = mysqli_real_escape_string($this->cn, $object->get('descripcion'));
+                        $clien = $_SESSION['idcliente'];
+                        $fecha = mysqli_real_escape_string($this->cn, $object->get('fecha'));
 
-            case "especialista":
-                switch ($options['lvl2']) {
-                    case "normal":
-                        $cedula = mysqli_real_escape_string($this->cn, $object->get('cedula'));
-                        $nombre = mysqli_real_escape_string($this->cn, $object->get('nombre'));
-                        $correo = mysqli_real_escape_string($this->cn, $object->get('correo'));
-                        $contraseña = mysqli_real_escape_string($this->cn, $object->get('contraseña'));
-                        $tipo = $_SESSION['Tipo'];
-                        $this->do_operation("INSERT INTO `dbdcps`.`especialista en desarrollo de producto`(`Cedula`,`Nombre`,`Correo`,`Contraseña`,`tipo`)
-                                            VALUES('$cedula','$nombre','$correo','$contraseña','$tipo');");
-                        break;
-                }
-                break;
-            
-             case "gerente":
-                switch ($options['lvl2']) {
-                    case "normal":
-                        $cedula = mysqli_real_escape_string($this->cn, $object->get('cedula'));
-                        $nombre = mysqli_real_escape_string($this->cn, $object->get('nombre'));
-                        $correo = mysqli_real_escape_string($this->cn, $object->get('correo'));
-                        $contraseña = mysqli_real_escape_string($this->cn, $object->get('contraseña'));
-                        $tipo = $_SESSION['Tipo'];
-                        $this->do_operation("INSERT INTO `dbdcps`.`gerente de negocios`(`Cedula`,`Nombre`,`Correo`,`Contraseña`,`tipo`)
-                                            VALUES('$cedula','$nombre','$correo','$contraseña','$tipo');");
+                        $this->do_operation("INSERT INTO `dbdcps1`.`idea`(`nombre`,`descripcion`,`fecha`,`cliente`)VALUES('$nom','$des','$fecha','$clien');");
                         break;
                 }
                 break;
@@ -220,22 +155,7 @@ class db {
                 }
                 break;
 
-            case "login":
-                switch ($option['lvl2']) {
-                    case "all":
-                        $info = $this->get_data("select * from login;");
-                        break;
-                    case "uno":
-                        $i = mysqli_real_escape_string($this->cn, $data['cedula']);
-                        $info = $this->get_data("select * from login where cedula='$i';");
-                        break;
-                    case "validalogin":
-                        $ced = mysqli_real_escape_string($this->cn, $data['cedula']);
-                        $contra = mysqli_real_escape_string($this->cn, $data['contrasena']);
-                        $info = $this->get_data("select * from empleado where cedula='$ced' and contrasena='$contra';");
-                        break;
-                }
-                break;
+
 
             case "empleado":
                 switch ($option['lvl2']) {
@@ -253,6 +173,17 @@ class db {
                         break;
                 }
                 break;
+
+            /*case "cliente":
+                switch ($option['lvl2']) {
+
+                    case "validar":
+                        $nom = mysqli_real_escape_string($this->cn, $data['nombre']);
+                        $contra = mysqli_real_escape_string($this->cn, $data['identificacion']);
+                        $info = $this->get_data("SELECT * FROM cliente where nombre ='$nom' and identificacion='$contra';");
+                        break;
+                }
+                break;*/
 
 
             default: break;

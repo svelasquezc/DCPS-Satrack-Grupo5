@@ -1,7 +1,27 @@
+<?php /* Smarty version Smarty-3.0.9, created on 2015-04-17 18:00:54
+         compiled from "C:/wamp/www/DCPS-2015-1-master/templates\proponer_idea.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:2612455312e367224b3-38463427%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '91637a3e72ae0a3c82e9763fc2433552c1e87841' => 
+    array (
+      0 => 'C:/wamp/www/DCPS-2015-1-master/templates\\proponer_idea.tpl',
+      1 => 1429286170,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '2612455312e367224b3-38463427',
+  'function' => 
+  array (
+  ),
+  'has_nocache_code' => false,
+)); /*/%%SmartyHeaderCode%%*/?>
 
 <link rel="stylesheet" href="css/login.css">
 
-<form action="{$gvar.l__global}proponer_idea.php?option=Agregar" method="post">
+<form action="<?php echo $_smarty_tpl->getVariable('gvar')->value['l__global'];?>
+proponer_idea.php?option=Agregar" method="post">
 
     <div class="container">
         <div class="row login_box">

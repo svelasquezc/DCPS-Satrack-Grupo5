@@ -7,36 +7,57 @@ class c_login extends super_controller {
 
     public function validarlogin() {
 
+
+
         $code['empleado']['cedula'] = $this->post->Usuario;
         $code['empleado']['contrasena'] = $this->post->Contrasena;
-
         $options['empleado']['lvl2'] = "validar";
         $this->orm->connect();
         $this->orm->read_data(array("empleado"), $options, $code);
         $this->em = $this->orm->get_objects("empleado");
         $this->orm->close();
-        $this->engine->assign('em', $em);
 
-        if(isset($this->em[0])){
-        $_SESSION['empleado']['cedula']=$this->em[0]->get('cedula');
-        $_SESSION['empleado']['nombre']=$this->em[0]->get('nombre');
-        $_SESSION['empleado']['contrasena']=$this->em[0]->get('contrasena');
-        $this->session=$_SESSION;
-        }
-           // print_r2($this->post);
-            if($this->em[0]->get('tipo1') == 'miembro'){
-                $this->temp = 'opciones_roles.tpl';
+       /* $codec['cliente']['nombre'] = $this->post->Usuario;
+        $codec['cliente']['identificacion'] = $this->post->Contrasena;
+        $optionss['cliente']['lvl2'] = "validar";
+        $this->orm->connect();
+        $this->orm->read_data(array("cliente"), $optionss, $codec);
+        $this->cl = $this->orm->get_objects("cliente");
+        $this->orm->close();
+
+        $_SESSION['idcliente'] = $this->post->Contrasena;*/
+
+        //echo $this->em->get('identificacion');
+
+        
+        if (isset($this->cl[0])) {
+            header('Location: analista.php');
+        } elseif (isset($this->em[0])) {
+            if ($this->em[0]->get('tipo1') == 'miembro') {
+                if ($this->em[0]->get('tipo2') == 'especialista en desarrollo del producto') {
+                    header('Location: analista.php');
+                } elseif ($this->em[0]->get('tipo2') == 'analista de negocios') {
+                    header('Location: opciones.php');
+                } elseif ($this->em[0]->get('tipo2') == 'gerente de negocios') {
+                    header('Location: analista.php');
+                } elseif ($this->em[0]->get('tipo2') == ' gerente.tpl') {
+                    header('Location: analista.php');
+                } elseif ($this->em[0]->get('tipo2') == 'arquitecto de software') {
+                    header('Location: analista.php');
+                }
             }
+        } else {
+            echo 'Error con nombre de usuario y/o contraseña';
+        }
     }
 
     public function display() {
-
-        
-        if (is_object($this->em[0])){
-            $this->engine->display($this->temp);
-        }else{
+        //if (is_object($this->em[0]) || is_object($this->cl[0])) {
+         //   $this->engine->display($this->temp);
+            //  $this->engine->display('login.tpl');
+       // } else {
             $this->engine->display('login.tpl');
-        }
+        //}
     }
 
     public function run() {

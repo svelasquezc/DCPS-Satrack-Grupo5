@@ -1,17 +1,20 @@
 <?php
+
 require('configs/include.php');
 
 class c_proponer_idea extends super_controller {
 
+    public function Agregar() {
 
-    public function display() {
+        $id = new idea($this->post);
+        $this->orm->connect();
+        $this->orm->insert_data("insert", $id);
+        $this->orm->close();
+    
+    }
 
-        
-        if (is_object($this->em[0])){
-            $this->engine->display($this->temp);
-        }else{
-            $this->engine->display('proponer_idea.tpl');
-        }
+    public function display() { 
+         $this->engine->display('mensajedatosguardados.tpl');
     }
 
     public function run() {
@@ -21,7 +24,6 @@ class c_proponer_idea extends super_controller {
         }
         $this->display();
     }
-
 }
 
 $ob = new c_proponer_idea();

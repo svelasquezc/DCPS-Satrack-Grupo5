@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.9, created on 2015-04-20 21:47:26
-         compiled from "C:/wamp/www/ProyectoDCPS/templates\login.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:2744553557ce93a678-81249698%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.0.9, created on 2015-04-17 10:47:39
+         compiled from "C:/wamp/www/DCPS-2015-1-master/templates\login.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:74545530bcedc263a5-45142887%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    '494cca0f9919e9eb71aab0915c81bf718f7f808f' => 
+    '494c4b5e25bc1b3b2b4c317da32d26db218e15ef' => 
     array (
-      0 => 'C:/wamp/www/ProyectoDCPS/templates\\login.tpl',
-      1 => 1429559108,
+      0 => 'C:/wamp/www/DCPS-2015-1-master/templates\\login.tpl',
+      1 => 1429257450,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2744553557ce93a678-81249698',
+  'nocache_hash' => '74545530bcedc263a5-45142887',
   'function' => 
   array (
   ),
@@ -21,7 +21,7 @@ $_smarty_tpl->decodeProperties(array (
 <link rel="stylesheet" href="css/login.css">
 <form action="<?php echo $_smarty_tpl->getVariable('gvar')->value['l__global'];?>
 login.php?option=validarlogin" method="post">
-    <title>Login</title>
+
     <div class="container">
         <div class="row login_box">
             <div class="col-md-12 col-xs-12" align="center">
@@ -41,9 +41,11 @@ login.php?option=validarlogin" method="post">
                 </div>
                 <div align="center">
 
-                    <button class="btn btn-orange">Ingresar</button></a>
-
-
+                    <a href="analista.tpl"><button class="btn btn-orange">Login</button></a>
+                    <?php if ($_smarty_tpl->getVariable('lo')->value->auxiliars['tipo']==1){?>
+                        <form action="<?php echo $_smarty_tpl->getVariable('gvar')->value['l__global'];?>
+analista.php" method="post">
+                        <?php }?>
                 </div>
 
             </div>

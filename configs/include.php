@@ -17,7 +17,7 @@
 
 define('C_FULL_PATH', 'C:/wamp/www/ProyectoDCPS/'); //full path
 
-define('C_L_GLOBAL', 'http://localhost/glight/'); //application global link
+define('C_L_GLOBAL', 'http://localhost/ProyectoDCPS/'); //application global link
 define('C_N_GLOBAL', 'Framework G - glight'); //application global title
 
 define('C_DB_SERVER', 'localhost'); //DB server
