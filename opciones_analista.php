@@ -7,7 +7,11 @@ class c_opciones extends super_controller {
 
     public function display() {
  
-            $this->engine->display('opciones.tpl');
+            $this->engine->display('header.tpl'); 
+            $this->engine->display('opciones_analista.tpl');
+           	$this->engine->display('fondo_analista.tpl');
+           	$this->engine->display('footer.tpl');
+
     }
 
     public function run() {

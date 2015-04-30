@@ -1,10 +1,8 @@
 <?php
 require('configs/include.php');
-import 'login.php';
 
 class c_analista extends super_controller {
 
-print_r2($em);
     public function display() {
 
         
@@ -13,7 +11,7 @@ print_r2($em);
     public function run() {
 
 
-        $this->display();
+        $this->display('empty.tpl');
     }
 
 }

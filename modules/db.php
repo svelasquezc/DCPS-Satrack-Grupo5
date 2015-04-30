@@ -168,8 +168,8 @@ class db {
                         break;
                     case "validar":
                         $ced = mysqli_real_escape_string($this->cn, $data['cedula']);
-                        $contra = mysqli_real_escape_string($this->cn, $data['contrasena']);
-                        $info = $this->get_data("select * from empleado where cedula='$ced' and contrasena='$contra';");
+                        
+                        $info = $this->get_data("select * from empleado where cedula='$ced';");
                         break;
                 }
                 break;
