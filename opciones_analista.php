@@ -9,8 +9,8 @@ class c_opciones extends super_controller {
  
             $this->engine->display('header.tpl'); 
             $this->engine->display('opciones_analista.tpl');
-           	$this->engine->display('fondo_analista.tpl');
-           	$this->engine->display('footer.tpl');
+            $this->engine->display('fondo_analista.tpl');
+            $this->engine->display('footer.tpl');
 
     }
 
