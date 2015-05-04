@@ -10,6 +10,8 @@ class c_Modificar_idea extends super_controller {
         }
         if (!is_empty($message1))
             throw_exception($message1);
+        
+        
         /*  $reun = new reunion($this->post);
 
           $this->orm->connect();
