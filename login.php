@@ -1,5 +1,6 @@
 ﻿<?php
 require('configs/include.php');
+require('modules/m_phpass/PasswordHash.php');
 
 class c_login extends super_controller {
 
@@ -8,9 +9,8 @@ class c_login extends super_controller {
     public function validarlogin() {
 
 
-
+        $hasher = new PasswordHash(8, FALSE);
         $code['empleado']['cedula'] = $this->post->Usuario;
-        $code['empleado']['contrasena'] = $this->post->Contrasena;
         $options['empleado']['lvl2'] = "validar";
         $this->orm->connect();
         $this->orm->read_data(array("empleado"), $options, $code);
@@ -32,12 +32,12 @@ class c_login extends super_controller {
         
         if (isset($this->cl[0])) {
             header('Location: analista.php');
-        } elseif (isset($this->em[0])) {
+        } elseif (isset($this->em[0]) && $hasher->CheckPassword($this->post->Contrasena, $this->em[0]->get('contrasena')))  {
             if ($this->em[0]->get('tipo1') == 'miembro') {
                 if ($this->em[0]->get('tipo2') == 'especialista en desarrollo del producto') {
                     header('Location: analista.php');
                 } elseif ($this->em[0]->get('tipo2') == 'analista de negocios') {
-                    header('Location: opciones.php');
+                    header('Location: opciones_analista.php');
                 } elseif ($this->em[0]->get('tipo2') == 'gerente de negocios') {
                     header('Location: analista.php');
                 } elseif ($this->em[0]->get('tipo2') == ' gerente.tpl') {
@@ -47,7 +47,9 @@ class c_login extends super_controller {
                 }
             }
         } else {
-            echo 'Error con nombre de usuario y/o contraseña';
+            if($this->post->Usuario == "" || $this->post->Contrasena == ""){
+                $this->engine->assign(alerta, "ms.alertify()");
+            }
         }
     }
 
@@ -56,7 +58,9 @@ class c_login extends super_controller {
          //   $this->engine->display($this->temp);
             //  $this->engine->display('login.tpl');
        // } else {
-            $this->engine->display('login.tpl');
+
+            $this->engine->display('ensayo_login.tpl');
+                    
         //}
     }
 

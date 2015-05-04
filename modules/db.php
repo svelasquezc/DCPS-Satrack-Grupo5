@@ -92,7 +92,14 @@ class db {
                 }
                 break;
 
-
+            case "prediseno":
+                switch ($options['lvl2']) {
+                    case "insert":
+                        $code = mysqli_real_escape_string($this->cn, $object->get('codigo'));
+                        $this->do_operation("INSERT INTO `dbdcps`.`prediseno`(`Codigo`) VALUES ($code);");
+                        break;
+                }
+                break;
 
             case "idea":
                 switch ($options['lvl2']) {
@@ -107,6 +114,16 @@ class db {
                 }
                 break;
 
+            case "reunion":
+                switch ($options['lvl2']) {
+                    case "insert_reunion":
+                        $fecha = mysqli_real_escape_string($this->cn, $object->get('fecha'));
+                        $idea = $_SESSION["ididea"];
+
+                        $this->do_operation("INSERT INTO `dbdcps`.`reunion`(`fecha`,`idea`)VALUES('$fecha','$idea');");
+                        break;
+                }
+                break;
 
 
             default: break;
@@ -154,27 +171,47 @@ class db {
                         break;
                 }
                 break;
-
-
-
-            case "empleado":
+            case "reunion":
                 switch ($option['lvl2']) {
                     case "all":
-                        $info = $this->get_data("select * from login;");
+                        $info = $this->get_data("SELECT r.*, r.id as 'id de la reunion', i.id as 'id de la idea' ,r.fecha as Fecha,  i.nombre As 'Nombre_de_la_idea' FROM idea i, reunion r WHERE i.id=r.idea;");
                         break;
-                    case "uno":
-                        $i = mysqli_real_escape_string($this->cn, $data['cedula']);
-                        $info = $this->get_data("select * from login where cedula='$i';");
-                        break;
-                    case "validar":
-                        $ced = mysqli_real_escape_string($this->cn, $data['cedula']);
-                        $contra = mysqli_real_escape_string($this->cn, $data['contrasena']);
-                        $info = $this->get_data("select * from empleado where cedula='$ced' and contrasena='$contra';");
+                    case "alll":
+                        $info = $this->get_data("select * from reunion;");
                         break;
                 }
                 break;
 
-            /*case "cliente":
+            case "idea":
+                switch ($option['lvl2']) {
+                    case "all":
+                        $info = $this->get_data("select * from idea;");
+                        break;
+                }
+                break;
+            case "prediseno":
+                switch ($option['lvl2']) {
+                    case "all":
+                        $code = mysqli_real_escape_string($this->cn, $data['Codigo']);
+                        $info = $this->get_data("SELECT * FROM `prediseno` where `Codigo`='$code';");
+                        break;
+                }
+                break;
+
+            case "empleado":
+                switch ($option['lvl2']) {
+
+                    case "validar":
+                        $ced = mysqli_real_escape_string($this->cn, $data['cedula']);
+                        $contrasena = mysqli_real_escape_string($this->cn, $data['contrasena']);
+                        $info = $this->get_data("select * from empleado where cedula='$ced' and contrasena='$contrasena';");
+                        echo $ced;
+                        echo $contrasena;
+                        break;
+                }
+                break;
+
+            case "cliente":
                 switch ($option['lvl2']) {
 
                     case "validar":
@@ -183,7 +220,7 @@ class db {
                         $info = $this->get_data("SELECT * FROM cliente where nombre ='$nom' and identificacion='$contra';");
                         break;
                 }
-                break;*/
+                break;
 
 
             default: break;

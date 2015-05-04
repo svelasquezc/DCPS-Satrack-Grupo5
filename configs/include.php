@@ -15,7 +15,7 @@
  * @version 1.2
  */
 
-define('C_FULL_PATH', 'C:/wamp/www/ProyectoDCPS/'); //full path
+define('C_FULL_PATH', 'C:/wamp/www/ProyectoDCPS1/'); //full path
 
 define('C_L_GLOBAL', 'http://localhost/ProyectoDCPS/'); //application global link
 define('C_N_GLOBAL', 'Framework G - glight'); //application global title

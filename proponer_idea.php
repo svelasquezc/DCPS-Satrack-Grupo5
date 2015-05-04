@@ -14,7 +14,10 @@ class c_proponer_idea extends super_controller {
     }
 
     public function display() { 
-         $this->engine->display('mensajedatosguardados.tpl');
+        $this->engine->display('header.tpl');
+        $this->engine->display('opciones_analista.tpl');
+        $this->engine->display('proponer_idea.tpl');
+        $this->engine->display('footer.tpl');
     }
 
     public function run() {

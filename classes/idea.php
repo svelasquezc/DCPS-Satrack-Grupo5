@@ -3,7 +3,7 @@
 class idea extends object_standard {
 
     //attribute variables
-    protected $ididea;
+    protected $id;
     protected $nombre;
     protected $descripcion;
     protected $cliente;
@@ -15,11 +15,11 @@ class idea extends object_standard {
 
     //data about the attributes
     public function metadata() {
-        return array("nombre" => array(), "descripcion" => array(), "cliente" => array(), "fecha" => array());
+        return array("id"=>array(),"nombre" => array(), "descripcion" => array(), "cliente" => array(), "fecha" => array());
     }
 
     public function primary_key() {
-        return array("ididea");
+        return array("id");
     }
 
     public function relational_keys($class, $rel_name) {

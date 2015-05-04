@@ -1,13 +1,13 @@
 <?php
+
 require('configs/include.php');
-import 'login.php';
 
-class c_analista extends super_controller {
+class c_opciones_analista extends super_controller {
 
-print_r2($em);
     public function display() {
 
-        
+
+        $this->engine->display('opciones_analista.tpl');
     }
 
     public function run() {
@@ -18,6 +18,6 @@ print_r2($em);
 
 }
 
-$ob = new c_analista();
+$ob = new c_opciones_analista();
 $ob->run();
 ?>

@@ -1,0 +1,137 @@
+body{
+	background: #2B2B2B;
+	margin-top: 20px;
+}
+
+.row{
+    margin: auto;
+}
+
+.login{
+	height: 90%;
+	text-align: center;
+	background: #253081;
+	border-radius: 50px 0px 50px 0px;
+	-moz-border-radius: 50px 0px 50px 0px;
+	-webkit-border-radius: 50px 0px 50px 0px;
+}
+
+.login_header{
+	height: 60%;
+	margin: auto;
+}
+
+
+.login_input{
+	height: 40%;
+	background: white;
+	margin: auto;
+	text-align: center;
+	border-radius: 50px 0px 37px 0px;
+	-moz-border-radius: 50px 0px 37px 0px;
+	-webkit-border-radius: 50px 0px 37px 0px;
+}
+
+.row_login{
+	height: 25%;
+	margin: auto;
+	padding-top: 10px;
+}
+.row_login1{
+	height: 20%;
+	margin: auto;
+}
+
+.row_login_center{
+	height: 50%;
+	margin: auto;
+}
+
+.form-control{
+	text-align: center;
+    color: #000000 !important;
+    font-size: 25px;
+    border: none;
+    padding: 25px;
+    padding-left: 10px;
+    border-bottom: 1px solid #CCC;
+    margin-bottom: 10px;
+    outline: none;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.form-control:focus{
+    border-radius: 0px;
+    border-bottom: 1px solid #FDC300;
+    margin-bottom: 10px;
+    outline: none;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.btn-orange{
+    background-color: #FDC300;
+    border-radius: 0px;
+    margin: 5px;
+    padding: 5px;
+    width: 150px;
+    font-size: 20px;
+    font-weight: inherit;
+}
+
+.btn-orange:hover {
+    background-color: #C69900;
+    border-radius: 0px;
+    margin: 5px;
+    padding: 5px;
+    width: 150px;
+    font-size: 20px;
+    font-weight: inherit;
+    color:#FFF !important;
+}
+
+.logo{
+	height: 60%;
+}
+
+.satrack{
+	height: 15%;
+	font-family: 'Raleway', sans-serif;
+	font-size: 35;
+	color: white;
+	border-bottom : 2px solid #FDC300;
+}
+
+.logo1{
+	height: 100%;
+}
+
+
+.image-circle{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    border: 4px solid #FFF;
+    margin: 10px;
+}
+
+.logo2{
+	padding: 0px;
+    border: 1px solid rgba(255, 255, 255, 0.29);
+    border-radius: 50%;
+    width: 170px;
+    height: 170px;
+}
+
+.bienvenido{
+	font-family: 'Raleway', sans-serif;
+	font-size: 20;
+	color: white;
+}
+
+.container{
+	top: 20px;
+}
