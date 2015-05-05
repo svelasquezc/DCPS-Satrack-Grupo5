@@ -17,7 +17,7 @@ class db {
     var $server = C_DB_SERVER; //DB server
     var $user = C_DB_USER; //DB user
     var $pass = C_DB_PASS; //DB password
-    var $db = dbdcps; //DB database name
+    var $db = dbdcpstodas; //DB database name
     var $limit = C_DB_LIMIT; //DB limit of elements by page
     var $cn;
     var $numpages;
@@ -91,22 +91,70 @@ class db {
                         break;
                 }
                 break;
+            
+            
+              case "dispositivo":
+                switch($options['lvl2'])
+                {
+                    case "normal":
+                        $codigo=mysqli_real_escape_string($this->cn,$object->get('codigo'));
+                        $costo=mysqli_real_escape_string($this->cn,$object->get('costo'));
+                        $funcion=mysqli_real_escape_string($this->cn, ($object->get('funcion')));
+                        $this->do_operation("INSERT INTO dispositivo (codigo, costo, funcion) VALUES ('$codigo', '$costo', '$funcion');");
+                        break;
 
+                }
+                break;
 
-
-            case "idea":
-                switch ($options['lvl2']) {
-                    case "insert":
-                        $nom = mysqli_real_escape_string($this->cn, $object->get('nombre'));
-                        $des = mysqli_real_escape_string($this->cn, $object->get('descripcion'));
-                        $clien = $_SESSION['idcliente'];
-                        $fecha = mysqli_real_escape_string($this->cn, $object->get('fecha'));
-
-                        $this->do_operation("INSERT INTO `dbdcps1`.`idea`(`nombre`,`descripcion`,`fecha`,`cliente`)VALUES('$nom','$des','$fecha','$clien');");
+                case "diseno":
+                switch($options['lvl2'])
+                {
+                    case "normal":
+                        $codigo=mysqli_real_escape_string($this->cn,$object->get('codigo'));
+                        $imagen=mysqli_real_escape_string($this->cn,$object->get('imagen'));
+                        $dispositivo=mysqli_real_escape_string($this->cn, ($object->get('dispositivo')));
+                        $this->do_operation("INSERT INTO diseno (codigo, imagen, dispositivo) VALUES ('$codigo', '$imagen', '$dispositivo');");
                         break;
                 }
                 break;
 
+
+            case "prediseno":
+                switch ($options['lvl2']) {
+                    case "insert":
+                        $code = mysqli_real_escape_string($this->cn, $object->get('codigo'));
+                        $this->do_operation("INSERT INTO `dbdcpstodas`.`prediseno`(`Codigo`) VALUES ($code);");
+                        break;
+                }
+                break;
+
+
+            case "idea":
+                switch ($options['lvl2']) {
+                    case "normal":
+                        $nombre = mysqli_real_escape_string($this->cn, $object->get('nombre'));
+                        $descripcion = mysqli_real_escape_string($this->cn, $object->get('descripcion'));
+                        $etapa = "Propuesta";
+                        $necesidad = mysqli_real_escape_string($this->cn, $object->get('necesidad'));
+                        $this->do_operation("INSERT INTO idea (nombre, descripcion, etapa, necesidad) VALUES ('$nombre', '$descripcion', '1', '$necesidad');");
+                        break;
+                }
+                break;
+
+
+            case "reunion":
+                switch ($options['lvl2']) {
+                    case "insert_reunion":
+                        $fecha = mysqli_real_escape_string($this->cn, $object->get('fecha'));
+                        $idea = $_SESSION["ididea"];
+                        //echo $fecha;
+                        //echo 'Esto es idea  ';
+                        //echo $idea;
+
+                        $this->do_operation("INSERT INTO `dbdcpstodas`.`reunion`(`fecha`,`idea`)VALUES('$fecha','$idea');");
+                        break;
+                }
+                break;
 
 
             default: break;
@@ -120,6 +168,16 @@ class db {
                 switch ($options['lvl2']) {
                     case "normal":
                         //
+                        break;
+                }
+                break;
+            case "idea":
+                switch ($options['lvl2']) {
+                    case "normal":
+
+                        $descripcion = mysqli_real_escape_string($this->cn, $object->get('descripcion'));
+                        $nombre = $_SESSION['nombre'];
+                        $this->do_operation("UPDATE `dbdcpstodas`.`idea` SET `descripcion` = '$descripcion', `etapa` =2 WHERE `nombre` = '$nombre';");
                         break;
                 }
                 break;
@@ -154,8 +212,42 @@ class db {
                         break;
                 }
                 break;
+            case "necesidad":
+                switch ($option['lvl2']) {
+                    case "all" :
+                        $info = $this->get_data("SELECT * FROM necesidad;");
+                        break;
+                }
+                break;
 
 
+            case "reunion":
+                switch ($option['lvl2']) {
+                    case "all":
+                        $info = $this->get_data("SELECT r.*, r.id as 'id de la reunion', i.nombre as 'Nombre_de_la_idea' ,r.fecha as Fecha,  i.nombre As 
+'Nombre_de_la_idea' FROM idea i, reunion r WHERE i.nombre=r.idea;");
+                        break;
+                    case "alll":
+                        $info = $this->get_data("select * from reunion;");
+                        break;
+                }
+                break;
+
+            case "idea":
+                switch ($option['lvl2']) {
+                    case "all":
+                        $info = $this->get_data("select * from idea;");
+                        break;
+                }
+                break;
+            case "prediseno":
+                switch ($option['lvl2']) {
+                    case "all":
+                        $code = mysqli_real_escape_string($this->cn, $data['Codigo']);
+                        $info = $this->get_data("SELECT * FROM `prediseno` where `Codigo`='$code';");
+                        break;
+                }
+                break;
 
             case "empleado":
                 switch ($option['lvl2']) {
@@ -174,7 +266,7 @@ class db {
                 }
                 break;
 
-            /*case "cliente":
+            case "cliente":
                 switch ($option['lvl2']) {
 
                     case "validar":
@@ -183,7 +275,14 @@ class db {
                         $info = $this->get_data("SELECT * FROM cliente where nombre ='$nom' and identificacion='$contra';");
                         break;
                 }
-                break;*/
+                break;
+            case "dispositivo":
+                switch ($option['lvl2']) {
+                    case "all" :
+                        $info = $this->get_data("SELECT * FROM dispositivo;");
+                        break;
+                }
+                break;
 
 
             default: break;
