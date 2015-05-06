@@ -34,8 +34,6 @@
                             {/section}
                             <br />
                              <a >Mas Detalle</a> <br /><br />
-                            <!--se debe usar variable sesion para saber quien esta logeado -->
-                            <input type="hidden" name="gerente" value="3456" />
                             <input type="submit" value="Aceptado" name="resultado" /><br /><br />
                             <input type="submit" value="Rechazado" name="resultado" />
 

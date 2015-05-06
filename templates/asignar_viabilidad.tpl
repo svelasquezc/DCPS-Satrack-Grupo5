@@ -20,8 +20,6 @@
                                 <option > No viable</option>
                                 <option > Modificable</option>
                         </select><br />
-                        <!--se debe usar variable sesion para saber quien esta logeado -->
-                    <input type="hidden" name="analista" value="2345" />
                     <a >Causa:</a> <br />
                     <textarea name = "causa" rows = "8" cols = "40" ></textarea> <br />
                     <input type="submit" value="Asignar Viabilidad" />

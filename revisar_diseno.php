@@ -46,7 +46,12 @@ class c_revisar_diseno extends super_controller {
     }
 
     public function run() {
-        try {if (isset($this->get->option)){$this->{$this->get->option}();}}
+        try {if($this->session['tipo2']=="gerente de negocios"){
+            if (isset($this->get->option)){$this->{$this->get->option}();}
+            }else{
+                header('Location: analista.php');
+            }
+            }
             catch (Exception $e){
                 $this->error=1;  $this->msg_warning=$e->getMessage();
                 $this->engine->assign('type_warning',$this->type_warning);

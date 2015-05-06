@@ -12,7 +12,8 @@ class c_asignar_viabilidad extends super_controller {
             $causa = $this->post->causa;
             if(is_empty($viabilidad->get('codigo'))||is_empty($codigo)||is_empty($causa))
             {throw_exception("Faltan datos por ingresar");}
-            
+            $viabilidad->set('analista',$this->session['id']);
+        
             $this->orm->connect();
             $this->orm->insert_data("normal",$viabilidad);
             $this->orm->close();
@@ -53,7 +54,12 @@ class c_asignar_viabilidad extends super_controller {
     }
 
     public function run() {
-        try {if (isset($this->get->option)){$this->{$this->get->option}();}}
+        try {if($this->session['tipo2']=="analista de negocios"){
+            if (isset($this->get->option)){$this->{$this->get->option}();}
+            }else{
+                header('Location: analista.php');
+            }
+            }
             catch (Exception $e){
                 $this->error=1;  $this->msg_warning=$e->getMessage();
                 $this->engine->assign('type_warning',$this->type_warning);
