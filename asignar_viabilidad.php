@@ -28,7 +28,7 @@ class c_asignar_viabilidad extends super_controller {
     public function display() {
 
         $option['prediseno']['lvl2']="sinviabilidad";
-        $components['prediseno']['viabilidad']=array("pr_vi");
+        $components['prediseno']['viabilidad']=array("p_v");
         
         $this->orm->connect();
         $this->orm->read_data(array("prediseno","viabilidad"),$option);

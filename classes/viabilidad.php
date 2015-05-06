@@ -1,10 +1,11 @@
 <?php
-    class prediseno extends object_standard{
+    class viabilidad extends object_standard{
         //atribute variables
         protected $codigo;
         protected $resultado;
-        protected $especialista;
-        protected $gerente;
+        protected $causa;
+        protected $analista;
+        protected $prediseno;
         
         //components
         var $components = array();
@@ -14,9 +15,9 @@
         
         //data about the attributes
         public function metadata() {
-            return array("codigo" => array(), "resultado" => array(), 
-                "especialista" => array("foreign_name" => "e_p","foreign" => "empleado", "foreign_attribute" => "cedula"), 
-                "gerente" => array("foreign_name" => "g_p","foreign" => "empleado", "foreign_attribute" => "cedula"));
+            return array("codigo" => array(), "resultado" => array(), "causa" => array(), 
+                "analista" => array("foreign_name" => "a_v","foreign" => "empleado", "foreign_attribute" => "cedula"), 
+                "prediseno" => array("foreign_name" => "p_v","foreign" => "prediseno", "foreign_attribute" => "codigo"));
         }
         
         public function primary_key() {
@@ -25,22 +26,22 @@
         
         public function relational_keys($class, $rel_name) {
             switch ($class){
-                case "especialista":
+                case "analista":
                     switch ($rel_name){
-                        case "e_p":
-                        return array("especialista");
+                        case "a_v":
+                        return array("analista");
                         break;
                     }
                 break;
             
-                case "gerente":
+                case "prediseno":
                         switch ($rel_name){
-                            case "g_p":
-                            return array("gerente");
+                            case "p_v":
+                            return array("prediseno");
                             break;
                         }
                     break;
-                
+            
                 default:
                 break;
             }

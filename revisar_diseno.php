@@ -3,6 +3,7 @@ require('configs/include.php');
 
 class c_revisar_diseno extends super_controller {
 
+    //protected $pr;
 
     public function add()
 	{

@@ -155,7 +155,20 @@ class db {
                         break;
                 }
                 break;
-
+            
+            case "viabilidad":
+                        switch($options['lvl2'])
+                        {
+                                case "normal":
+                                $cod=mysqli_real_escape_string($this->cn,$object->get('codigo'));
+                                $prediseno=mysqli_real_escape_string($this->cn,$object->get('prediseno'));
+                                $resultado=mysqli_real_escape_string($this->cn, $object->get('resultado'));
+                                $causa=mysqli_real_escape_string($this->cn,$object->get('causa'));
+                                $analista=mysqli_real_escape_string($this->cn,$object->get('analista'));
+                                $this->do_operation("INSERT INTO viabilidad (codigo, resultado, causa, analista, prediseno) VALUES ('$cod', '$resultado', '$causa', '$analista', '$prediseno');");
+                                break;
+                        }
+                        break;
 
             default: break;
         }
@@ -181,6 +194,37 @@ class db {
                         break;
                 }
                 break;
+            
+            case "prediseno":
+                        switch($options['lvl2'])
+                        {
+                                case "normal":
+                                $cod=mysqli_real_escape_string($this->cn,$object->get('codigo'));
+                                $esp=mysqli_real_escape_string($this->cn,$object->get('especialista'));
+                                $resultado=mysqli_real_escape_string($this->cn, $object->get('resultado'));
+                                $gerente=mysqli_real_escape_string($this->cn,$object->get('gerente'));
+                                $analista=mysqli_real_escape_string($this->cn,$object->get('analista'));
+                                $this->do_operation("UPDATE prediseno SET codigo='$cod', resultado='$resultado', especialista='$esp', gerente='$gerente', analista='$analista' WHERE cod='$cod';");
+                                break;
+                                case "calificar":
+                                $cod=mysqli_real_escape_string($this->cn,$object->get('codigo'));
+                                $resultado=mysqli_real_escape_string($this->cn, $object->get('resultado'));
+                                $gerente=mysqli_real_escape_string($this->cn,$object->get('gerente'));
+                                $this->do_operation("UPDATE prediseno SET resultado='$resultado', gerente='$gerente' WHERE codigo='$cod';");
+                                break;
+                        }
+                        break;
+                    
+                    case "diseno":
+                        switch($options['lvl2'])
+                        {
+                                case "revicion":
+                                $cod=mysqli_real_escape_string($this->cn,$object->get('codigo'));
+                                $evaluacion=mysqli_real_escape_string($this->cn,$object->get('evaluacion'));
+                                $this->do_operation("UPDATE diseno SET evaluacion='$evaluacion' WHERE codigo='$cod';");
+                                break;
+                        }
+                        break;
 
             default: break;
         }
@@ -246,6 +290,10 @@ class db {
                         $code = mysqli_real_escape_string($this->cn, $data['Codigo']);
                         $info = $this->get_data("SELECT * FROM `prediseno` where `Codigo`='$code';");
                         break;
+                    case "sinviabilidad":
+                        $info = $this->get_data("SELECT t.codigo FROM prediseno AS t WHERE t.codigo not in(SELECT t1.codigo
+                                            FROM prediseno AS t1 INNER JOIN viabilidad AS t2 ON t1.codigo = t2.prediseno);");
+                        break;
                 }
                 break;
 
@@ -283,7 +331,30 @@ class db {
                         break;
                 }
                 break;
-
+            
+            case "diseno":
+                switch ($option['lvl2']) {
+                    case "all":
+                        $info = $this->get_data("select * from diseno;");
+                        break;
+                    case "uno":
+                        $cod = mysqli_real_escape_string($this->cn, $data['codigo']);
+                        $info = $this->get_data("select * from diseno where cedula='$cod';");
+                        break;
+                }
+                break;
+            
+            case "viabilidad":
+                switch ($option['lvl2']) {
+                    case "all":
+                        $info = $this->get_data("select * from viabilidad;");
+                        break;
+                    case "uno":
+                        $i = mysqli_real_escape_string($this->cn, $data['cedula']);
+                        $info = $this->get_data("select * from viabilidad where cedula='$i';");
+                        break;
+                }
+                break;
 
             default: break;
         }
